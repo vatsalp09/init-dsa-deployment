@@ -32,7 +32,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.get("/",(req,res)=>{
-    res.send("Welcome to initDSA");
+    res.send("Welcome to Init DSA Deployment Phase");
 })
 app.use("/api/v1/auth",authRoutes);
 app.use("/api/V1/problems", problemRoutes);
