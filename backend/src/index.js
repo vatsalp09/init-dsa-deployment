@@ -23,7 +23,9 @@ const allowedOrigins = [
   "https://init-dsa.vercel.app",
   "https://www.init-dsa.vercel.app",
   "https://init-dsa-deployment.vercel.app",
-  "https://www.init-dsa-deployment.vercel.app"
+  "https://www.init-dsa-deployment.vercel.app",
+  "https://testingdomainxyz.shop",
+  "https://www.testingdomainxyz.shop"
 ];
 
 app.use(
