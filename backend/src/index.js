@@ -21,26 +21,37 @@ const allowedOrigins = [
   "https://initdsa.in",
   "https://www.initdsa.in",
   "https://init-dsa.vercel.app",
+  "https://www.init-dsa.vercel.app",
+  "https://init-dsa-deployment.vercel.app",
+  "https://www.init-dsa-deployment.vercel.app"
 ];
+
 app.use(
   cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("CORS not allowed for this origin"));
+      }
+    },
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   })
 );
+
 app.use(express.json());
 app.use(cookieParser());
 
-app.get("/",(req,res)=>{
-    res.send("Welcome to Init DSA Deployment Phase");
+app.get("/", (req, res) => {
+  res.send("Welcome to Init DSA Deployment Phase");
 })
-app.use("/api/v1/auth",authRoutes);
+app.use("/api/v1/auth", authRoutes);
 app.use("/api/V1/problems", problemRoutes);
-app.use("/api/v1/execute-code",executionRoute);
+app.use("/api/v1/execute-code", executionRoute);
 app.use("/api/v1/submission", submissionRoutes);
-app.use("/api/v1/playlist",playlistRoutes);
+app.use("/api/v1/playlist", playlistRoutes);
 
-app.listen(process.env.PORT, ()=>{
-    console.log(`Server is listening on port ${process.env.PORT}`)
+app.listen(process.env.PORT, () => {
+  console.log(`Server is listening on port ${process.env.PORT}`)
 })
- 
