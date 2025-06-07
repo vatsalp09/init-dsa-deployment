@@ -56,4 +56,5 @@ app.use("/api/v1/playlist", playlistRoutes);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is listening on port ${process.env.PORT}`)
+  console.log(`Open Swagger Document : http://localhost:${PORT}/api-docs`);
 })
