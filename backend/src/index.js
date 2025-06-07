@@ -46,8 +46,22 @@ app.use(cookieParser());
 app.use("/api-docs", swaggerUIPath.serve, swaggerUIPath.setup(swaggerjsonFilePath));
 
 app.get("/", (req, res) => {
-  res.send("Welcome to Init DSA Deployment Phase");
-})
+  res.json({
+    message: "🚀 Welcome to the Init DSA API!",
+    description: "Powering your coding journey with structured problem-solving, intelligent execution, and seamless learning.",
+    features: [
+      "User Authentication & Session Management",
+      "Curated Problem Sets with Difficulty Levels",
+      "Real-Time Code Execution Engine",
+      "Submission Tracking & Evaluation",
+      "Playlist-based Learning Progress",
+    ],
+    status: "Live and Operational",
+    environment: process.env.NODE_ENV || "development",
+    timestamp: new Date().toISOString(),
+  });
+});
+
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/V1/problems", problemRoutes);
 app.use("/api/v1/execute-code", executionRoute);
@@ -56,5 +70,5 @@ app.use("/api/v1/playlist", playlistRoutes);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is listening on port ${process.env.PORT}`)
-  console.log(`Open Swagger Document : http://localhost:${PORT}/api-docs`);
+  console.log(`Open Swagger Document: http://localhost:${process.env.PORT}/api-docs`);
 })

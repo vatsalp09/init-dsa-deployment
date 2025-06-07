@@ -1,2 +1,9 @@
-node_modules
+# Node.js
+node_modules/
 .env
+.env.*
+.vscode/
+.DS_Store
+logs/
+coverage/
+build/
