@@ -1,6 +1,14 @@
 import axios from "axios";
-console.log(import.meta.env.MODE)
+
+const mode = import.meta.env.VITE_MODE;
+const localUrl = import.meta.env.VITE_LOCAL_API_URL;
+const liveUrl = import.meta.env.VITE_LIVE_API_URL;
+
+const baseURL = mode === "development" ? localUrl : liveUrl;
+
+console.log("Running in", mode, "mode. Using baseURL:", baseURL);
+
 export const axiosInstance = axios.create({
-  baseURL: import.meta.env.MODE === "development" ? "http://localhost:5000/api/v1" : "https://initdsa.onrender.com/api/v1",
+  baseURL,
   withCredentials: true,
 });
