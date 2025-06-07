@@ -60,63 +60,96 @@ app.use(cookieParser());
 app.use("/api-docs", swaggerUIPath.serve, swaggerUIPath.setup(swaggerjsonFilePath));
 
 app.get("/", (req, res) => {
+  const frontendBase = "https://www.testingdomainxyz.shop";
+
   res.send(`
     <!DOCTYPE html>
     <html lang="en">
-      <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="Init DSA API - Backend powering real-time code execution and structured DSA learning." />
-        <meta name="author" content="Init DSA Team" />
-        <meta property="og:title" content="Init DSA API" />
-        <meta property="og:description" content="Live backend service for structured DSA learning and code execution." />
-        <meta property="og:type" content="website" />
-        <title>🚀 Init DSA API</title>
-        <style>
-          body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-            line-height: 1.6;
-          }
-          ul {
-            list-style: none;
-            padding-left: 0;
-          }
-          li::before {
-            content: "✔️ ";
-            margin-right: 6px;
-          }
-        </style>
-      </head>
-      <body>
-        <h2>🚀 Welcome to the Init DSA API!</h2>
-        <p>This backend service powers the <strong>Init DSA</strong> platform — your intelligent companion for mastering Data Structures and Algorithms.</p>
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta name="description" content="Init DSA API - Backend powering real-time code execution and structured DSA learning." />
+      <title>🚀 Init DSA API</title>
+      <style>
+        body {
+          font-family: 'Segoe UI', sans-serif;
+          background: #f9f9f9;
+          padding: 40px;
+          line-height: 1.6;
+          color: #222;
+        }
+        h2 {
+          color: #1a73e8;
+        }
+        ul {
+          list-style: none;
+          padding-left: 0;
+        }
+        li::before {
+          content: "✅ ";
+          margin-right: 6px;
+        }
+        a {
+          color: #007bff;
+          text-decoration: none;
+          font-weight: 600;
+        }
+        a:hover {
+          text-decoration: underline;
+        }
+        .status {
+          margin-top: 20px;
+          font-size: 16px;
+        }
+        .footer {
+          margin-top: 32px;
+          font-size: 17px;
+        }
+      </style>
+    </head>
+    <body>
+      <h2>🚀 Welcome to the Init DSA API!</h2>
+      <p>This backend powers the <strong>Init DSA</strong> platform — your intelligent companion for mastering Data Structures and Algorithms through live code execution and structured learning.</p>
 
-        <p>✅ <strong>Key Features:</strong></p>
-        <ul>
-          <li>User Authentication & Session Management</li>
-          <li>Curated Problem Sets with Difficulty Levels</li>
-          <li>Real-Time Code Execution Engine</li>
-          <li>Submission Tracking & Evaluation</li>
-          <li>Playlist-based Learning Progress</li>
-        </ul>
+      <p>🧩 <strong>Key Features:</strong></p>
+      <ul>
+        <li>User Authentication & Secure Session Management</li>
+        <li>Curated Problem Sets with Difficulty Levels</li>
+        <li>Real-Time Code Execution Engine</li>
+        <li>Submission Tracking & Evaluation</li>
+        <li>Playlist-based Learning Progress</li>
+      </ul>
 
-        <p>🌐 <strong>Status:</strong> Live and Operational</p>
-        <p>📅 <strong>Uptime (GMT):</strong> <span id="gmt-time"></span></p>
-        <p>🕒 <strong>Uptime (IST):</strong> <span id="ist-time"></span></p>
-        <p>📍 <strong>Environment:</strong> ${process.env.NODE_ENV || "development"}</p>
-        <p>💻🔍 <strong>Happy Coding!</strong></p>
+      <div class="status">
+        🌐 <strong>Status:</strong> Live and Operational<br />
+        📅 <strong>Uptime (GMT):</strong> <span id="gmt-time"></span><br />
+        🕒 <strong>Uptime (IST):</strong> <span id="ist-time"></span><br />
+        📌 <strong>Environment:</strong> ${process.env.NODE_ENV || "development"}
+      </div>
 
-        <script>
-          function updateTime() {
-            const now = new Date();
-            document.getElementById("gmt-time").textContent = now.toUTCString();
-            document.getElementById("ist-time").textContent = now.toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
-          }
-          updateTime();
-          setInterval(updateTime, 1000);
-        </script>
-      </body>
+      <div class="footer">
+        ✨ Ready to take your coding skills to the next level? 
+        <a href="${frontendBase}/signup" target="_blank">Create an account</a> or 
+        <a href="${frontendBase}/login" target="_blank">log in</a> to start solving real DSA problems with live code execution and tracked progress.<br /><br />
+        
+        📖 Want to learn more? 
+        <a href="${frontendBase}" target="_blank">Visit our website</a> and explore how Init DSA can help you build a strong programming foundation.<br /><br />
+
+        💻🔍 <strong>Happy Coding!</strong>
+      </div>
+
+      <script>
+        function updateTime() {
+          const now = new Date();
+          document.getElementById("gmt-time").textContent = now.toUTCString();
+          document.getElementById("ist-time").textContent = now.toLocaleString("en-IN", {
+            timeZone: "Asia/Kolkata"
+          });
+        }
+        updateTime();
+        setInterval(updateTime, 1000);
+      </script>
+    </body>
     </html>
   `);
 });
