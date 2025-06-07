@@ -15,7 +15,6 @@ import playlistRoutes from "./routes/playlist.routes.js";
 dotenv.config();
 
 const app = express();
-app.use("/api-docs", swaggerUIPath.serve, swaggerUIPath.setup(swaggerjsonFilePath));
 const allowedOrigins = [
   "http://localhost:5173",
   "https://initdsa.in",
@@ -44,6 +43,7 @@ app.use(
 
 app.use(express.json());
 app.use(cookieParser());
+app.use("/api-docs", swaggerUIPath.serve, swaggerUIPath.setup(swaggerjsonFilePath));
 
 app.get("/", (req, res) => {
   res.send("Welcome to Init DSA Deployment Phase");
